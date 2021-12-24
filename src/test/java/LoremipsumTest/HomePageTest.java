@@ -9,9 +9,9 @@ public class HomePageTest extends BaseTest{
     public void verifyThatKeywordAppearsInFirstParagraph(){
         getHomePage().implicitWait(30);
         getHomePage().goToRuVersionSite();
-        System.out.println("language to change ru");
+        System.out.println("the language was changed  to ru");
         getHomePage().implicitWait(30);
-        String text = getHomePage().getTextOfFirstParagraph().getText().toString();
+        String text = getHomePage().getTextOfFirstParagraph().getText();
 //        Assert.assertTrue(text.contains("рыба"));
         System.out.println(text);
     }
