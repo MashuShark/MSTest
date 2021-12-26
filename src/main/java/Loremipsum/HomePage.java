@@ -18,6 +18,18 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//tbody//input[@name='generate']")
     private WebElement generateLoremIpsumButton;
 
+    @FindBy(xpath = "//tbody//input[@type='checkbox']")
+    private WebElement checkbox;
+
+    @FindBy(xpath = "//tbody//input[@value='words']")
+    private WebElement wordsRadioButton;
+
+    @FindBy(xpath = "//tbody//input[@value='bytes']")
+    private WebElement bytesRadioButton;
+
+    @FindBy(xpath = "//tbody//input[@name='amount']")
+    private WebElement inputSizeLoremIpsum;
+
     public HomePage(WebDriver driver) {
         super(driver);
     }
@@ -39,5 +51,25 @@ public class HomePage extends BasePage {
     public void moveAndClickGenerateLoremIpsumButton(){
         moveToElement(generateLoremIpsumButton);
         generateLoremIpsumButton.click();
+    }
+
+    public void moveAndUncheckCheckbox(){
+        moveToElement(checkbox);
+        checkbox.click();
+    }
+
+    public void moveAndClickWordsRadioButton(){
+        moveToElement(wordsRadioButton);
+        wordsRadioButton.click();
+    }
+
+    public void moveAndClickBytesRadioButton(){
+        moveToElement(bytesRadioButton);
+        bytesRadioButton.click();
+    }
+
+    public void setInputSizeLoremIpsum(int size){
+        inputSizeLoremIpsum.clear();
+        inputSizeLoremIpsum.sendKeys(String.valueOf(size));
     }
 }

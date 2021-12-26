@@ -1,7 +1,9 @@
 package Loremipsum;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,4 +20,8 @@ public class BasePage {
         driver.manage().timeouts().implicitlyWait(timeToWait, TimeUnit.SECONDS);
     }
 
+    public void waitLoadPage (long timeToWait) {
+        new WebDriverWait(driver, timeToWait).until(
+                webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+    }
 }
