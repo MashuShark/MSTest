@@ -2,6 +2,7 @@ package Loremipsum;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
@@ -9,8 +10,13 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//div[@id='Languages']//a[@href='http://ru.lipsum.com/']")
     private WebElement ruVersionSite;
 
-    @FindBy(xpath = "//div[@id='Panes']//p/text()")
-    private String textOfFirstParagraph;
+    @FindBy(xpath = "//div[@id='Panes']//p")
+    private WebElement firstParagraph;
+
+    private String textFromFirstParagraph = firstParagraph.getText();
+
+    @FindBy(xpath = "//tbody//input[@name='generate']")
+    private WebElement generateLoremIpsumButton;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -20,10 +26,18 @@ public class HomePage extends BasePage {
         ruVersionSite.click();
     }
 
-    public String getTextOfFirstParagraph(){
-        return textOfFirstParagraph;
+    public String getTextFromFirstParagraph(){
+        return textFromFirstParagraph;
     }
-//    public String getTextOfFirstParagraph(){
-//        return textOfFirstParagraph.getAttribute("innerhtml");
-//    }
+
+    private void moveToElement(WebElement element){
+        Actions moveTo = new Actions(driver);
+        moveTo.moveToElement(element);
+        moveTo.perform();
+    }
+
+    public void moveAndClickGenerateLoremIpsumButton(){
+        moveToElement(generateLoremIpsumButton);
+        generateLoremIpsumButton.click();
+    }
 }

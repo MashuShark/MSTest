@@ -39,4 +39,7 @@ public class BaseTest {
         return new HomePage(getDriver());
     }
 
+    public GenerateParagraphsLoremIpsumPage getGenerateParagraphsLoremIpsumPage(){
+        return new GenerateParagraphsLoremIpsumPage(getDriver());
+    }
 }
