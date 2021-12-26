@@ -42,7 +42,7 @@ public class HomePage extends BasePage {
         return textFromFirstParagraph;
     }
 
-    private void moveToElement(WebElement element){
+    public void moveToElement(WebElement element){
         Actions moveTo = new Actions(driver);
         moveTo.moveToElement(element);
         moveTo.perform();
