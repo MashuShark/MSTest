@@ -2,19 +2,25 @@ package BBC1.stepdefinitions;
 
 import BBC1.manager.PageFactoryManager;
 import BBC1.pages.*;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
+import static org.openqa.selenium.By.xpath;
 
 public class DefinitionSteps {
 
-    WebDriver driver;
+    static WebDriver driver;
     HomePage homePage;
     NewsPage newsPage;
     SearchResultPage searchResultPage;
@@ -82,7 +88,7 @@ public class DefinitionSteps {
     }
 
     @And("Checks the name of the sixth article against a {string}")
-    public void checkSixthArticle(String SIXTH_TITLE) {
+    public void checkSixthArticle(final String SIXTH_TITLE) {
         Assert.assertEquals(newsPage.getNameOfArticle6(), SIXTH_TITLE);
     }
 
@@ -124,13 +130,51 @@ public class DefinitionSteps {
         usersQuestionsPage.moveToFormForUsersQuestions();
     }
 
+    @And("User enters question")
+    public void enterQuestion() {
+        usersQuestionsPage.fillQuestionsInput();
+    }
+
+
+//    Map<String, String> userData = new HashMap<String, String>();
+//    {
+//        userData.put("Name", "Alex");
+//        userData.put("Email address", "");
+//        userData.put("Contact number", "1234567890");
+//        userData.put("Location ", "Monaco");
+//        userData.put("Age", "20");
+//    }
+//
+//    public static WebElement getTextXpath(String text) {
+//        return driver.findElement(xpath("//input[@placeholder='" + text + "']"));
+//    }
+//
+//    @And("User fills form")
+//    public void fillForm() {
+////        Map<String, String> values = dataTable.asMap();
+////        form = pageFactoryManager.getForm();
+//        for ( Map.Entry entry: userData.entrySet())
+//            getTextXpath(String.valueOf(entry.getKey())).sendKeys(String.valueOf(entry.getValue()));
+//
+//    }
+
     @And("User fills form")
-    public void fillForm() {
-        form = pageFactoryManager.getForm();
-        form.fillQuestionsInput();
-        form.fillUserContacts();
-        form.selectValueFromDropdown();
-        form.clickOnSubmitButton();
+    public void fillForm(Map<String, String> values) {
+//        Map<String, String> values = dataTable.asMap();
+//        form = pageFactoryManager.getForm();
+        for ( Map.Entry entry: values.entrySet())
+            usersQuestionsPage.getTextXpath(String.valueOf(entry.getKey())).sendKeys(String.valueOf(entry.getValue()));
+
+    }
+
+    @And("User selects dropdown")
+    public void userSelectDropdown() {
+        usersQuestionsPage.selectValueFromDropdown();
+    }
+
+    @And("User sends form")
+    public void userSendsForm() {
+        usersQuestionsPage.clickOnSubmitButton();
     }
 
     @When("Checks email error message")
@@ -141,7 +185,7 @@ public class DefinitionSteps {
 
     @And("User clicks on Submit Button")
     public void clickOnSubmitButton() {
-        form.clickOnSubmitButton();
+        usersQuestionsPage.clickOnSubmitButton();
     }
 
     @After

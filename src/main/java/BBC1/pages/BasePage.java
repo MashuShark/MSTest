@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.concurrent.TimeUnit;
 
 public class BasePage {
-    WebDriver driver;
+    static WebDriver driver;
 
     public BasePage(WebDriver driver){
         this.driver = driver;

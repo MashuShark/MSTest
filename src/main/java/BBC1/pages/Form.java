@@ -11,29 +11,23 @@ import static org.openqa.selenium.By.xpath;
 
 public class Form extends BasePage{
 
-    private String QUESTION = "Some text for verify form";
+//    public void fillForm(Map<String, String> values) {
+//        for ( Map.Entry entry: values.entrySet())
+//            UsersQuestionsPage.getTextXpath(String.valueOf(entry.getKey())).sendKeys(String.valueOf(entry.getValue()));
+//    }
 
     public Form(WebDriver driver) {
         super(driver);
     }
 
-    Map<String, String> userData = new HashMap<String, String>();
-    {
-        userData.put("Name", "Alex");
-        userData.put("Email address", "");
-        userData.put("Contact number", "1234567890");
-        userData.put("Location ", "Monaco");
-        userData.put("Age", "20");
-    }
-
-    public WebElement getTextXpath(String text) {
-        return driver.findElement(xpath("//input[@placeholder='" + text + "']"));
-    }
-
-    public void fillUserContacts(){
-        for ( Map.Entry entry: userData.entrySet())
-            getTextXpath(String.valueOf(entry.getKey())).sendKeys(String.valueOf(entry.getValue()));
-    }
+//    Map<String, String> userData = new HashMap<String, String>();
+//    {
+//        userData.put("Name", "Alex");
+//        userData.put("Email address", "");
+//        userData.put("Contact number", "1234567890");
+//        userData.put("Location ", "Monaco");
+//        userData.put("Age", "20");
+//    }
 
 //    @FindBy(xpath = "//input[@placeholder='Name']")
 //    private WebElement nameInput;
@@ -50,27 +44,4 @@ public class Form extends BasePage{
 //    @FindBy(xpath = "//input[contains(@placeholder,'Age')]")
 //    private WebElement ageInput;
 
-    @FindBy(xpath = "//textarea[contains(@placeholder,'questions')]")
-    private WebElement questionsInput;
-
-    @FindBy(xpath = "//div[@class='button-container']//button[text()='Submit']")
-    private WebElement submitButton;
-
-    @FindBy(xpath = "//div[@class=\"checkbox\"]//input[@type=\"checkbox\"]")
-    private WebElement checkBox;
-
-    @FindBy(xpath = "//div[@class='checkbox']//input[@type='checkbox']")
-    private WebElement checkboxButton;
-
-    public void fillQuestionsInput(){
-        questionsInput.sendKeys(QUESTION);
-    }
-
-    public void clickOnSubmitButton(){
-        submitButton.click();
-    }
-
-    public void selectValueFromDropdown(){
-        checkboxButton.click();
-    }
 }

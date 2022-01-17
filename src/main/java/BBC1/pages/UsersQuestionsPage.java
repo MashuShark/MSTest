@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
+import static org.openqa.selenium.By.xpath;
+
 public class UsersQuestionsPage extends BasePage{
 
     @FindBy(xpath = "//div[@id='hearken-embed-module-8848-12e31']")
@@ -18,6 +20,20 @@ public class UsersQuestionsPage extends BasePage{
 
     @FindBy(xpath = "//button[@class='tp-close tp-active']")
     private WebElement closePopupButton;
+
+    @FindBy(xpath = "//textarea[contains(@placeholder,'questions')]")
+    private WebElement questionsInput;
+
+    @FindBy(xpath = "//div[@class='button-container']//button[text()='Submit']")
+    private WebElement submitButton;
+
+    @FindBy(xpath = "//div[@class=\"checkbox\"]//input[@type=\"checkbox\"]")
+    private WebElement checkBox;
+
+    @FindBy(xpath = "//div[@class='checkbox']//input[@type='checkbox']")
+    private WebElement checkboxButton;
+
+    private String QUESTION = "Some text for verify form";
 
     public UsersQuestionsPage(WebDriver driver) {
         super(driver);
@@ -40,16 +56,28 @@ public class UsersQuestionsPage extends BasePage{
         return errorMessageMissingEmail.getText();
     }
 
-//    public WebElement getPopup(){
-//        return popup;
-//    }
-
     public void clickClosePopupButton(){
         closePopupButton.click();
     }
 
     public WebElement getClosePopupButton(){
         return  closePopupButton;
+    }
+
+    public void fillQuestionsInput(){
+        questionsInput.sendKeys(QUESTION);
+    }
+
+    public void clickOnSubmitButton(){
+        submitButton.click();
+    }
+
+    public void selectValueFromDropdown(){
+        checkboxButton.click();
+    }
+
+    public static WebElement getTextXpath(String text) {
+        return driver.findElement(xpath("//input[contains(@placeholder,'" + text + "')]"));
     }
 
 }
