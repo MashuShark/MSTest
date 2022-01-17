@@ -19,7 +19,7 @@ Feature: Smoke
     And Checks the name of the third article against a '<THIRD_TITLE>'
     And Checks the name of the fourth article against a '<FOURTH_TITLE>'
     And Checks the name of the fifth article against a '<FIFTH_TITLE>'
-#    And Checks the name of the sixth article against a '<SIXTH_TITLE>'
+    And Checks the name of the sixth article against a '<SIXTH_TITLE>'
 
     Examples:
       | homePage            |                     SECOND_TITLE                   |                 THIRD_TITLE                         |                  FOURTH_TITLE                    |                       FIFTH_TITLE              |               SIXTH_TITLE                    |
