@@ -26,20 +26,23 @@ public class UsersQuestionsPage extends BasePage{
     private void moveToElement(WebElement element){
         Actions moveTo = new Actions(driver);
         moveTo.moveToElement(element);
-//        moveTo.perform();
     }
 
     public void moveToFormForUsersQuestions(){
         moveToElement(formForUsersQuestions);
     }
 
-    public String getErrorMessageMissingEmail(){
+    public WebElement getErrorMessageMissingEmail(){
+        return errorMessageMissingEmail;
+    }
+
+    public String getErrorMessageMissingEmailText(){
         return errorMessageMissingEmail.getText();
     }
 
-    public WebElement getPopup(){
-        return popup;
-    }
+//    public WebElement getPopup(){
+//        return popup;
+//    }
 
     public void clickClosePopupButton(){
         closePopupButton.click();
@@ -48,6 +51,5 @@ public class UsersQuestionsPage extends BasePage{
     public WebElement getClosePopupButton(){
         return  closePopupButton;
     }
-
 
 }

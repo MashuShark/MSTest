@@ -5,6 +5,7 @@ import BBC1.pages.*;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -81,35 +82,39 @@ public class DefinitionSteps {
     }
 
     @And("Checks the name of the sixth article against a {string}")
-    public void checkSixthArticle(final String SIXTH_TITLE) {
+    public void checkSixthArticle(String SIXTH_TITLE) {
         Assert.assertEquals(newsPage.getNameOfArticle6(), SIXTH_TITLE);
     }
 
     @And("User enters title of Category in search field")
     public void enterTitleInSearchField() {
-        String titleOfCategory = newsPage.getNameOfCategory();
+        titleOfCategory = newsPage.getNameOfCategory();
         homePage.enterTextInSearchBar(titleOfCategory);
     }
 
-    @And("Checks the name of the first in category article against a {string}")
+    @And("Checks the name of the first in category article against a title of Category")
     public void checkNameOfFirstInCategoryArticleAgainstNameOfCategory() {
-        Assert.assertEquals(searchResultPage.getNameOfFirstArticle(), titleOfCategory);
+        searchResultPage = pageFactoryManager.getSearchResultPage();
+        Assert.assertTrue(searchResultPage.getNameOfFirstArticle().contains(titleOfCategory));
     }
 
     @And("User opens Coronavirus category")
     public void openCoronavirusCategory() {
         newsPage.clickOnCoronavirusCategory();
+        coronavirusCategoryPage = pageFactoryManager.getCoronavirusCategoryPage();
     }
 
     @And("User opens User Coronavirus Story Page")
     public void openUserCoronavirusStoryPage() {
         coronavirusCategoryPage.clickOnUsersCoronavirusStoryButton();
+        usersCoronavirusStoryPage = pageFactoryManager.getUsersCoronavirusStoryPage();
     }
 
     @And("User opens User Questions Page")
     public void openUserQuestionsPage() {
         usersCoronavirusStoryPage.clickOnUsersQuestionsLink();
-        usersCoronavirusStoryPage.waitLoadPage(60);
+        usersQuestionsPage = pageFactoryManager.getUsersUsersQuestionsPage();
+        usersQuestionsPage.waitLoadPage(60);
     }
 
     @And("User moves to form for user questions")
@@ -119,15 +124,29 @@ public class DefinitionSteps {
         usersQuestionsPage.moveToFormForUsersQuestions();
     }
 
-
-    @And("Checks  email error message {string}")
-    public void checksEmailErrorMessageError_message_missing_email(final String error_message_missing_email) {
-        Assert.assertEquals(usersQuestionsPage.getErrorMessageMissingEmail(), error_message_missing_email);
+    @And("User fills form")
+    public void fillForm() {
+        form = pageFactoryManager.getForm();
+        form.fillQuestionsInput();
+        form.fillUserContacts();
+        form.selectValueFromDropdown();
+        form.clickOnSubmitButton();
     }
 
+    @When("Checks email error message")
+    public void checksEmailErrorMessageError_message_missing_email() {
+        usersQuestionsPage.waitVisibilityOfElement(60, usersQuestionsPage.getErrorMessageMissingEmail());
+        Assert.assertEquals(ERROR_MESSAGE_MISSING_EMAIL, usersQuestionsPage.getErrorMessageMissingEmailText());
+    }
+
+    @And("User clicks on Submit Button")
+    public void clickOnSubmitButton() {
+        form.clickOnSubmitButton();
+    }
 
     @After
     public void tearDown(){
         driver.close();
     }
+
 }

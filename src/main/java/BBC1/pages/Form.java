@@ -4,46 +4,52 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import javax.naming.ldap.PagedResultsControl;
 import java.util.HashMap;
+import java.util.Map;
+
+import static org.openqa.selenium.By.xpath;
 
 public class Form extends BasePage{
 
+    private String QUESTION = "Some text for verify form";
 
     public Form(WebDriver driver) {
         super(driver);
     }
 
-//    public void FillForm(Dictionary<String, String> values) {
-//
-//    }
-//
-    public HashMap<String, String> getUserData(){
-        HashMap<String, String> userData = new HashMap<String, String>();
-
-        userData.put("What questions would you like us to answer?", "Some text for verify form");
+    Map<String, String> userData = new HashMap<String, String>();
+    {
         userData.put("Name", "Alex");
-        userData.put("Email address", null);
+        userData.put("Email address", "");
         userData.put("Contact number", "1234567890");
         userData.put("Location ", "Monaco");
         userData.put("Age", "20");
-
-        return userData;
     }
 
-    @FindBy(xpath = "//input[@placeholder='Name']")
-    private WebElement nameInput;
+    public WebElement getTextXpath(String text) {
+        return driver.findElement(xpath("//input[@placeholder='" + text + "']"));
+    }
 
-    @FindBy(xpath = "//input[@placeholder='Email address']")
-    private WebElement emailInput;
+    public void fillUserContacts(){
+        for ( Map.Entry entry: userData.entrySet())
+            getTextXpath(String.valueOf(entry.getKey())).sendKeys(String.valueOf(entry.getValue()));
+    }
 
-    @FindBy(xpath = "//input[contains(@placeholder,'number')]")
-    private WebElement numberInput;
-
-    @FindBy(xpath = "//input[contains(@placeholder,'Location')]")
-    private WebElement locationInput;
-
-    @FindBy(xpath = "//input[contains(@placeholder,'Age')]")
-    private WebElement ageInput;
+//    @FindBy(xpath = "//input[@placeholder='Name']")
+//    private WebElement nameInput;
+//
+//    @FindBy(xpath = "//input[@placeholder='Email address']")
+//    private WebElement emailInput;
+//
+//    @FindBy(xpath = "//input[contains(@placeholder,'number')]")
+//    private WebElement numberInput;
+//
+//    @FindBy(xpath = "//input[contains(@placeholder,'Location')]")
+//    private WebElement locationInput;
+//
+//    @FindBy(xpath = "//input[contains(@placeholder,'Age')]")
+//    private WebElement ageInput;
 
     @FindBy(xpath = "//textarea[contains(@placeholder,'questions')]")
     private WebElement questionsInput;
@@ -57,28 +63,8 @@ public class Form extends BasePage{
     @FindBy(xpath = "//div[@class='checkbox']//input[@type='checkbox']")
     private WebElement checkboxButton;
 
-    public void fillNameInput(){
-//        nameInput.sendKeys(getUserData.get("Name"));
-        nameInput.sendKeys("Alex");
-    }
-    public void fillEmailInput(){
-        emailInput.sendKeys("");
-    }
-
-    public void fillNumberInput(){
-        numberInput.sendKeys("1234567890");
-    }
-
-    public void fillLocationInput(){
-        locationInput.sendKeys("Monaco");
-    }
-
-    public void fillAgeInput(){
-        ageInput.sendKeys("20");
-    }
-
     public void fillQuestionsInput(){
-        questionsInput.sendKeys("Some text for verify form");
+        questionsInput.sendKeys(QUESTION);
     }
 
     public void clickOnSubmitButton(){
@@ -87,7 +73,5 @@ public class Form extends BasePage{
 
     public void selectValueFromDropdown(){
         checkboxButton.click();
-//        Select day =new Select(checkBox);
-//        day.selectByVisibleText("I accept the ");
     }
 }

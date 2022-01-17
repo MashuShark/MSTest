@@ -10,7 +10,7 @@ Feature: Smoke
 
     Examples:
       | homePage            | NAME_OF_HEADLINER_ARTICLE |
-      | https://www.bbc.com | Tonga tsunami: Major damage reported amid communications black out  |
+      | https://www.bbc.com | Anxious wait for news after tsunami cuts off Tonga  |
 
   Scenario Outline: Checks secondary article titles against a List titles
     Given User opens '<homePage>' page
@@ -19,17 +19,17 @@ Feature: Smoke
     And Checks the name of the third article against a '<THIRD_TITLE>'
     And Checks the name of the fourth article against a '<FOURTH_TITLE>'
     And Checks the name of the fifth article against a '<FIFTH_TITLE>'
-    And Checks the name of the sixth article against a '<SIXTH_TITLE>'
+#    And Checks the name of the sixth article against a '<SIXTH_TITLE>'
 
     Examples:
-      | homePage            | SECOND_TITLE | THIRD_TITLE  | FOURTH_TITLE | FIFTH_TITLE | SIXTH_TITLE |
-      | https://www.bbc.com |  | | | | |
+      | homePage            |                     SECOND_TITLE                   |                 THIRD_TITLE                         |                  FOURTH_TITLE                    |                       FIFTH_TITLE              |               SIXTH_TITLE                    |
+      | https://www.bbc.com | Body of British woman found in Tonga, says brother | Djokovic back in Serbia after Australia deportation | Two teens held in UK over Texas synagogue siege  | Texas Rabbi: How I escaped from synagogue siege| Suspect identified over Anne Frank's betrayal|
 
   Scenario Outline: Check name Of first article in category Against name of category
     Given User opens '<homePage>' page
     And User opens News
     And User enters title of Category in search field
-    And Checks the name of the first in category article against a '<title_of_Category>'
+    When Checks the name of the first in category article against a title of Category
 
     Examples:
       | homePage            |
@@ -43,7 +43,8 @@ Feature: Smoke
     And User opens User Questions Page
     And User moves to form for user questions
     And User fills form
-    And Checks  email error message '<error_message_missing_email>'
+    And User clicks on Submit Button
+    When Checks email error message
     Examples:
-      | homePage            | error_message_missing_email |
-      | https://www.bbc.com | |
+      | homePage            |
+      | https://www.bbc.com |
