@@ -12,17 +12,14 @@ public class UsersQuestionsPage extends BasePage{
     @FindBy(xpath = "//div[@id='hearken-embed-module-8848-12e31']")
     private WebElement formForUsersQuestions;
 
-    @FindBy(xpath = "//div[@class='text-input--error']//div[@class='input-error-message']")
-    private WebElement errorMessageMissingEmail;
+    @FindBy(xpath = "//div[@class='input-error-message']")
+    private WebElement errorMessage;
 
     @FindBy(xpath = "//div[@class='modal-flexBox']")
     private WebElement popup;
 
     @FindBy(xpath = "//button[@class='tp-close tp-active']")
     private WebElement closePopupButton;
-
-    @FindBy(xpath = "//textarea[contains(@placeholder,'questions')]")
-    private WebElement questionsInput;
 
     @FindBy(xpath = "//div[@class='button-container']//button[text()='Submit']")
     private WebElement submitButton;
@@ -32,8 +29,6 @@ public class UsersQuestionsPage extends BasePage{
 
     @FindBy(xpath = "//div[@class='checkbox']//input[@type='checkbox']")
     private WebElement checkboxButton;
-
-    private String QUESTION = "Some text for verify form";
 
     public UsersQuestionsPage(WebDriver driver) {
         super(driver);
@@ -49,11 +44,11 @@ public class UsersQuestionsPage extends BasePage{
     }
 
     public WebElement getErrorMessageMissingEmail(){
-        return errorMessageMissingEmail;
+        return errorMessage;
     }
 
     public String getErrorMessageMissingEmailText(){
-        return errorMessageMissingEmail.getText();
+        return errorMessage.getText();
     }
 
     public void clickClosePopupButton(){
@@ -62,10 +57,6 @@ public class UsersQuestionsPage extends BasePage{
 
     public WebElement getClosePopupButton(){
         return  closePopupButton;
-    }
-
-    public void fillQuestionsInput(){
-        questionsInput.sendKeys(QUESTION);
     }
 
     public void clickOnSubmitButton(){
@@ -77,7 +68,7 @@ public class UsersQuestionsPage extends BasePage{
     }
 
     public static WebElement getTextXpath(String text) {
-        return driver.findElement(xpath("//input[contains(@placeholder,'" + text + "')]"));
+        return driver.findElement(xpath("//div[@class='embed-content-container']//*[contains(@placeholder,'" + text + "')]"));
     }
 
 }

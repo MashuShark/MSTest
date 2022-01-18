@@ -35,28 +35,28 @@ Feature: Smoke
       | homePage            |
       | https://www.bbc.com |
 
-  Scenario Outline: Check form user question error message missing email
+  Scenario Outline: Check form user question
     Given User opens 'https://www.bbc.com' page
     And User opens News
     And User opens Coronavirus category
     And User opens User Coronavirus Story Page
     And User opens User Questions Page
     And User moves to form for user questions
-    And User enters question
     And User fills form
-
-      | Name           |<name>     |
-      | Email address  | <Email address>   |
-      | Contact number | <Contact number> |
-      | Location        | <Location> |
-      | Age            | <Age>         |
+      | questions      |<question>        |
+      | Name           |<name>            |
+      | Email address  | <email address>  |
+      | Contact number | <contact number> |
+      | Location       | <location>       |
+      | Age            | <age>            |
 
     And User selects dropdown
     And User sends form
-    And User clicks on Submit Button
-    When Checks email error message
+    When User checks '<error>' message
 
     Examples:
-      | name   | Email address | Contact number | Location | Age|
-      | Alex   || 1234567890     | Monaco  | 20 |
+      |question                 |name   | email address | contact number | location | age| error                         |
+      |Some text for verify form|Tom    | [blank]       | 1234567890     | Monaco   | 20 | Email address can\'t be blank |
+      |Some text for verify form|[blank]| test@mail.com | 1234567890     | Monaco  | 20  | Name can\'t be blank          |
+      |[blank]                  |Alex   | test@mail.com | 1234567890     | Monaco  | 20  | can\'t be blank               |
 

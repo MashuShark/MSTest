@@ -2,21 +2,17 @@ package BBC1.stepdefinitions;
 
 import BBC1.manager.PageFactoryManager;
 import BBC1.pages.*;
-import io.cucumber.datatable.DataTable;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.util.HashMap;
 import java.util.Map;
-
 import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
-import static org.openqa.selenium.By.xpath;
 
 public class DefinitionSteps {
 
@@ -37,16 +33,6 @@ public class DefinitionSteps {
         driver.manage().window().maximize();
         pageFactoryManager = new PageFactoryManager(driver);
     }
-
-//    private final String NAME_OF_HEADLINER_ARTICLE = "Djokovic 'grateful' after winning Australia court battle";
-
-//    private final String ARTICLE_2 = "Kazakhstan unrest was coup attempt, says president";
-//    private final String ARTICLE_3 = "Colds may give some Covid protection - study";
-//    private final String ARTICLE_4 = "Celebrations revealed for Queen's Platinum Jubilee";
-//    private final String ARTICLE_5 = "Past seven years hottest on record - EU data";
-//    private final String ARTICLE_6 = "Ikea cuts sick pay for some unvaccinated staff";
-
-    private final String ERROR_MESSAGE_MISSING_EMAIL = "Email address can't be blank";
 
     private String titleOfCategory;
 
@@ -130,41 +116,15 @@ public class DefinitionSteps {
         usersQuestionsPage.moveToFormForUsersQuestions();
     }
 
-    @And("User enters question")
-    public void enterQuestion() {
-        usersQuestionsPage.fillQuestionsInput();
-    }
-
-
-//    Map<String, String> userData = new HashMap<String, String>();
-//    {
-//        userData.put("Name", "Alex");
-//        userData.put("Email address", "");
-//        userData.put("Contact number", "1234567890");
-//        userData.put("Location ", "Monaco");
-//        userData.put("Age", "20");
-//    }
-//
-//    public static WebElement getTextXpath(String text) {
-//        return driver.findElement(xpath("//input[@placeholder='" + text + "']"));
-//    }
-//
-//    @And("User fills form")
-//    public void fillForm() {
-////        Map<String, String> values = dataTable.asMap();
-////        form = pageFactoryManager.getForm();
-//        for ( Map.Entry entry: userData.entrySet())
-//            getTextXpath(String.valueOf(entry.getKey())).sendKeys(String.valueOf(entry.getValue()));
-//
-//    }
-
     @And("User fills form")
     public void fillForm(Map<String, String> values) {
-//        Map<String, String> values = dataTable.asMap();
-//        form = pageFactoryManager.getForm();
-        for ( Map.Entry entry: values.entrySet())
-            usersQuestionsPage.getTextXpath(String.valueOf(entry.getKey())).sendKeys(String.valueOf(entry.getValue()));
+        form = pageFactoryManager.getForm();
+        form.fillForm(values);
+    }
 
+    @DataTableType(replaceWithEmptyString = "[blank]")
+    public String listOfStringListsType(String cell) {
+        return cell;
     }
 
     @And("User selects dropdown")
@@ -177,15 +137,10 @@ public class DefinitionSteps {
         usersQuestionsPage.clickOnSubmitButton();
     }
 
-    @When("Checks email error message")
-    public void checksEmailErrorMessageError_message_missing_email() {
-        usersQuestionsPage.waitVisibilityOfElement(60, usersQuestionsPage.getErrorMessageMissingEmail());
-        Assert.assertEquals(ERROR_MESSAGE_MISSING_EMAIL, usersQuestionsPage.getErrorMessageMissingEmailText());
-    }
-
-    @And("User clicks on Submit Button")
-    public void clickOnSubmitButton() {
-        usersQuestionsPage.clickOnSubmitButton();
+    @When("User checks {string} message")
+    public void checksEmailErrorMessageError_message_missing_email(final String error) {
+       usersQuestionsPage.waitVisibilityOfElement(60, usersQuestionsPage.getErrorMessageMissingEmail());
+        Assert.assertTrue(usersQuestionsPage.getErrorMessageMissingEmailText().contains(error));
     }
 
     @After
