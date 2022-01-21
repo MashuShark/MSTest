@@ -20,7 +20,7 @@ public class NewsPage extends BasePage {
     @FindBy(xpath = "//div[@class='gel-layout__item nw-c-top-stories__secondary-item gel-1/1 gel-1/3@m gel-1/4@l nw-o-keyline nw-o-no-keyline@m gs-u-float-left nw-c-top-stories__secondary-item--5 gel-1/5@xxl']//h3[@class='gs-c-promo-heading__title gel-pica-bold nw-o-link-split__text']")
     private WebElement article6;
 
-    @FindBy(xpath = "//li[@class='gs-o-list-ui__item--flush gel-long-primer gs-u-display-block gs-u-float-left nw-c-nav__wide-menuitem-container']//a[@class='nw-o-link']//span[text()='Climate']")
+    @FindBy(xpath = "//a[contains(@class,'nw-o-link--no-visited-state')]")
     private WebElement nameOfCategory;
 
     @FindBy(xpath = "//ul[@class='gs-o-list-ui--top-no-border nw-c-nav__wide-sections']//a[contains(@href,'coronavirus')]")

@@ -6,6 +6,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -27,20 +28,32 @@ public class DefinitionSteps {
     PageFactoryManager pageFactoryManager;
 
     @Before
-    public void testSetUp() {
+    public void testSetUp(){
         chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         pageFactoryManager = new PageFactoryManager(driver);
     }
 
-    private String titleOfCategory;
-
     @And("User opens {string} page")
-    public void openPage(final String url) {
+    public void openPage(final String url){
         homePage = pageFactoryManager.getHomePage();
         homePage.openHomePage(url);
     }
+
+    private String titleOfCategory;
+
+//    @Given("User opens {string} page")
+//    public void userOpensHomePagePage(final String url) {
+//        homePage = pageFactoryManager.getHomePage();
+//        homePage.openHomePage(url);
+//    }
+
+//    @And("User opens {string} page")
+//    public void openPage(final String url) {
+//        homePage = pageFactoryManager.getHomePage();
+//        homePage.openHomePage(url);
+//    }
 
     @And("User opens News")
     public void openNews() {
@@ -50,7 +63,7 @@ public class DefinitionSteps {
 
     @And("Checks the name of the headline article against a {string}")
     public void checkNameOfTHeadlineArticle(final String title) {
-        Assert.assertEquals(newsPage.getNameOfHeadlineArticle(), title);
+        Assert.assertEquals(title, newsPage.getNameOfHeadlineArticle());
     }
 
     @And("Checks the name of the second article against a {string}")
@@ -147,5 +160,6 @@ public class DefinitionSteps {
     public void tearDown(){
         driver.close();
     }
+
 
 }

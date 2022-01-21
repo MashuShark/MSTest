@@ -10,7 +10,7 @@ Feature: Smoke
 
     Examples:
       | homePage            | NAME_OF_HEADLINER_ARTICLE |
-      | https://www.bbc.com | Anxious wait for news after tsunami cuts off Tonga  |
+      | https://www.bbc.com | Former pope failed to act over abuse - report |
 
   Scenario Outline: Checks secondary article titles against a List titles
     Given User opens '<homePage>' page
@@ -22,8 +22,8 @@ Feature: Smoke
     And Checks the name of the sixth article against a '<SIXTH_TITLE>'
 
     Examples:
-      | homePage            |                     SECOND_TITLE                   |                 THIRD_TITLE                         |                  FOURTH_TITLE                    |                       FIFTH_TITLE              | SIXTH_TITLE                        |
-      | https://www.bbc.com | Body of British woman found in Tonga, says brother | Djokovic back in Serbia after Australia deportation | Two teens held in UK over Texas synagogue siege  | Texas Rabbi: How I escaped from synagogue siege| How I escaped from synagogue siege |
+      | homePage            |  SECOND_TITLE                                    | THIRD_TITLE                                        | FOURTH_TITLE                                   | FIFTH_TITLE                                       | SIXTH_TITLE                                       |
+      | https://www.bbc.com | Biden believes Putin will \'move in\' on Ukraine | Most Havana syndrome not caused by adversary - CIA | Even the dogs were covered in ash - Tonga resident  | Ministers blackmailing Johnson plotters - Tory MP| Ghislaine Maxwell seeks retrial in sex abuse case |
 
   Scenario Outline: Check name Of first article in category Against name of category
     Given User opens '<homePage>' page

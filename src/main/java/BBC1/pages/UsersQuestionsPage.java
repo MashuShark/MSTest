@@ -1,5 +1,6 @@
 package BBC1.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -68,7 +69,8 @@ public class UsersQuestionsPage extends BasePage{
     }
 
     public static WebElement getTextXpath(String text) {
-        return driver.findElement(xpath("//div[@class='embed-content-container']//*[contains(@placeholder,'" + text + "')]"));
-    }
+//        return driver.findElement(xpath("//div[@class='embed-content-container']//*[contains(@placeholder,'" + text + "')]"));
+        return driver.findElement(xpath(String.format("//div[@class='embed-content-container']//*[contains(@placeholder,'%s')]", text)));
 
+    }
 }
