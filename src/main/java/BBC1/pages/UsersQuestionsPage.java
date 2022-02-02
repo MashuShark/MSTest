@@ -69,7 +69,8 @@ public class UsersQuestionsPage extends BasePage{
     }
 
     public static WebElement getTextXpath(String text) {
-        return driver.findElement(xpath(String.format("//div[@class='embed-content-container']//*[contains(@placeholder,'%s')]", text)));
-
+        return driver.findElement(xpath(String.format(
+                "//div[@class='embed-content-container']//*[contains(@placeholder,'%s')]", text
+        )));
     }
 }
