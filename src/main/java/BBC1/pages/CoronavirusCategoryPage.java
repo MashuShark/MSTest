@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class CoronavirusCategoryPage extends BasePage{
 
-    @FindBy(xpath = "//li[@class='gs-o-list-ui__item--flush gel-long-primer gs-u-display-block gs-u-float-left nw-c-nav__secondary-menuitem-container']//a[@class='nw-o-link']")
+    @FindBy(xpath = "//li[contains(@class,'secondary-menuitem-container')]//a[@class='nw-o-link']")
     private WebElement usersCoronavirusStoryButton;
 
     public CoronavirusCategoryPage(WebDriver driver) {

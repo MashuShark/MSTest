@@ -19,11 +19,10 @@ Feature: Smoke
     And Checks the name of the third article against a '<THIRD_TITLE>'
     And Checks the name of the fourth article against a '<FOURTH_TITLE>'
     And Checks the name of the fifth article against a '<FIFTH_TITLE>'
-    And Checks the name of the sixth article against a '<SIXTH_TITLE>'
 
     Examples:
-      | homePage            |  SECOND_TITLE                                    | THIRD_TITLE                                        | FOURTH_TITLE                                   | FIFTH_TITLE                                       | SIXTH_TITLE                                       |
-      | https://www.bbc.com | Biden believes Putin will \'move in\' on Ukraine | Most Havana syndrome not caused by adversary - CIA | Even the dogs were covered in ash - Tonga resident  | Ministers blackmailing Johnson plotters - Tory MP| Ghislaine Maxwell seeks retrial in sex abuse case |
+      | homePage            |  SECOND_TITLE                                    | THIRD_TITLE                                        | FOURTH_TITLE                                   | FIFTH_TITLE                                       |
+      | https://www.bbc.com | Biden believes Putin will \'move in\' on Ukraine | Most Havana syndrome not caused by adversary - CIA | Even the dogs were covered in ash - Tonga resident  | Ministers blackmailing Johnson plotters - Tory MP|
 
   Scenario Outline: Check name Of first article in category Against name of category
     Given User opens '<homePage>' page

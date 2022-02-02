@@ -10,7 +10,7 @@ import static org.openqa.selenium.By.xpath;
 
 public class UsersQuestionsPage extends BasePage{
 
-    @FindBy(xpath = "//div[@id='hearken-embed-module-8848-12e31']")
+    @FindBy(xpath = "//div[contains(@id,'hearken-embed-module')]")
     private WebElement formForUsersQuestions;
 
     @FindBy(xpath = "//div[@class='input-error-message']")
@@ -25,7 +25,7 @@ public class UsersQuestionsPage extends BasePage{
     @FindBy(xpath = "//div[@class='button-container']//button[text()='Submit']")
     private WebElement submitButton;
 
-    @FindBy(xpath = "//div[@class=\"checkbox\"]//input[@type=\"checkbox\"]")
+    @FindBy(xpath = "//div[@class='checkbox']//input[@type='checkbox']")
     private WebElement checkBox;
 
     @FindBy(xpath = "//div[@class='checkbox']//input[@type='checkbox']")
@@ -69,7 +69,6 @@ public class UsersQuestionsPage extends BasePage{
     }
 
     public static WebElement getTextXpath(String text) {
-//        return driver.findElement(xpath("//div[@class='embed-content-container']//*[contains(@placeholder,'" + text + "')]"));
         return driver.findElement(xpath(String.format("//div[@class='embed-content-container']//*[contains(@placeholder,'%s')]", text)));
 
     }

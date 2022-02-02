@@ -7,10 +7,8 @@ import org.openqa.selenium.support.FindBy;
 
 public class UsersCoronavirusStoryPage extends BasePage{
 
-    @FindBy(xpath= "//a[@href=\"/news/52143212\"]") // TO EDIT!
+    @FindBy(xpath= "//a[@href='/news/52143212']")
     private WebElement usersQuestionsLink;
-
-
 
     public UsersCoronavirusStoryPage(WebDriver driver) {
         super(driver);

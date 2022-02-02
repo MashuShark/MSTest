@@ -86,11 +86,6 @@ public class DefinitionSteps {
         Assert.assertEquals(newsPage.getNameOfArticle5(), FIFTH_TITLE);
     }
 
-    @And("Checks the name of the sixth article against a {string}")
-    public void checkSixthArticle(final String SIXTH_TITLE) {
-        Assert.assertEquals(newsPage.getNameOfArticle6(), SIXTH_TITLE);
-    }
-
     @And("User enters title of Category in search field")
     public void enterTitleInSearchField() {
         titleOfCategory = newsPage.getNameOfCategory();
