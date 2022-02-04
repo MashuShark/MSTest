@@ -17,7 +17,7 @@ public class UsersCoronavirusStoryPage extends BasePage{
     private void moveToElement(WebElement element){
         Actions moveTo = new Actions(driver);
         moveTo.moveToElement(element);
-        moveTo.perform();
+//        moveTo.perform();
     }
 
     public void clickOnUsersQuestionsLink(){

@@ -6,12 +6,12 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.List;
 import java.util.Map;
 import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
 
@@ -27,6 +27,8 @@ public class DefinitionSteps {
     Form form;
     PageFactoryManager pageFactoryManager;
 
+    private String titleOfCategory;
+
     @Before
     public void testSetUp(){
         chromedriver().setup();
@@ -41,20 +43,6 @@ public class DefinitionSteps {
         homePage.openHomePage(url);
     }
 
-    private String titleOfCategory;
-
-//    @Given("User opens {string} page")
-//    public void userOpensHomePagePage(final String url) {
-//        homePage = pageFactoryManager.getHomePage();
-//        homePage.openHomePage(url);
-//    }
-
-//    @And("User opens {string} page")
-//    public void openPage(final String url) {
-//        homePage = pageFactoryManager.getHomePage();
-//        homePage.openHomePage(url);
-//    }
-
     @And("User opens News")
     public void openNews() {
         homePage.clickOnNewsButton();
@@ -66,24 +54,9 @@ public class DefinitionSteps {
         Assert.assertEquals(title, newsPage.getNameOfHeadlineArticle());
     }
 
-    @And("Checks the name of the second article against a {string}")
-    public void checkSecondArticle(final String SECOND_TITLE) {
-        Assert.assertEquals(newsPage.getNameOfArticle2(), SECOND_TITLE);
-    }
-
-    @And("Checks the name of the third article against a {string}")
-    public void checkThirdArticle(final String THIRD_TITLE) {
-        Assert.assertEquals(newsPage.getNameOfArticle3(), THIRD_TITLE);
-    }
-
-    @And("Checks the name of the fourth article against a {string}")
-    public void checkFourthArticle(final String FOURTH_TITLE) {
-        Assert.assertEquals(newsPage.getNameOfArticle4(), FOURTH_TITLE);
-    }
-
-    @And("Checks the name of the fifth article against a {string}")
-    public void checkFifthArticle(final String FIFTH_TITLE) {
-        Assert.assertEquals(newsPage.getNameOfArticle5(), FIFTH_TITLE);
+    @And("Checks that name of secondary articles are correct")
+    public void checksNameOfSecondaryArticles(List<String> names) {
+       Assert.assertTrue("Names of second articles on site don't match", names.equals(newsPage.getNameOfSecondaryArticles()));
     }
 
     @And("User enters title of Category in search field")
@@ -119,15 +92,16 @@ public class DefinitionSteps {
 
     @And("User moves to form for user questions")
     public void userMovesToFormForUserQuestions() {
-        usersQuestionsPage.waitElementToBeClicable(60, usersQuestionsPage.getClosePopupButton());
+        usersQuestionsPage.waitElementToBeClickable(60, usersQuestionsPage.getClosePopupButton());
         usersQuestionsPage.clickClosePopupButton();
         usersQuestionsPage.moveToFormForUsersQuestions();
     }
 
     @And("User fills form")
-    public void fillForm(Map<String, String> values) {
+//    @DataTableType(replaceWithEmptyString = "[blank]")
+    public void fillForm(Map<String, String> entry) {
         form = pageFactoryManager.getForm();
-        form.fillForm(values);
+        form.fillForm(entry);
     }
 
     @DataTableType(replaceWithEmptyString = "[blank]")
@@ -155,6 +129,5 @@ public class DefinitionSteps {
     public void tearDown(){
         driver.close();
     }
-
 
 }

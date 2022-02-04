@@ -17,10 +17,6 @@ public class BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void implicitWait (long timeToWait){
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeToWait));
-    }
-
     public void waitLoadPage (long timeToWait) {
         new WebDriverWait(driver, Duration.ofSeconds(timeToWait)).until(
                 webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
@@ -31,7 +27,7 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public void waitElementToBeClicable(long timeToWait, WebElement element) {
+    public void waitElementToBeClickable(long timeToWait, WebElement element) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeToWait));
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }

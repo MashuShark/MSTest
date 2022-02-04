@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage{
 
-    @FindBy(xpath = "//div[contains(@class,'orb-nav-focus')]//a[contains(text(),'Home')]")
+    @FindBy(xpath = "//nav[@class='orb-nav']//a[contains(text(),'News')]")
     private WebElement newsButtonHeader;
 
     @FindBy (xpath = "//input[@id='orb-search-q']")

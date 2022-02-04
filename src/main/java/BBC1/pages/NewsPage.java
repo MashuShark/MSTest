@@ -4,19 +4,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class NewsPage extends BasePage {
 
     @FindBy(xpath = "//div[contains(@class,'gs-u-display-inline-block@m')]//h3[contains(@class,'gs-c-promo-heading')]")
     private WebElement nameOfHeadlineArticle;
 
-    @FindBy(xpath = "//div[contains(@class,'gs-u-mt gs-u-mt0@xs')]//h3[contains(@class,'gs-c-promo-heading')]")
-    private WebElement article2;
-    @FindBy(xpath = "//div[contains(@class,'secondary-item--2 gel-1/5@xxl')]//h3[contains(@class,'gs-c-promo-heading')]")
-    private WebElement article3;
-    @FindBy(xpath = "//div[contains(@class,'secondary-item--3 gel-1/5@xxl')]//h3[contains(@class,'gs-c-promo-heading')]")
-    private WebElement article4;
-    @FindBy(xpath = "//div[contains(@class,'secondary-item--4 gel-1/5@xxl')]//h3[contains(@class,'gs-c-promo-heading')]")
-    private WebElement article5;
+    @FindBy(xpath = "//div[contains(@class,'nw-c-top-stories--international')]//div[contains(@class,'secondary-item')]//h3")
+    private List<WebElement> listOfSecondaryArticles;
 
     @FindBy(xpath = "//a[contains(@class,'nw-o-link--no-visited-state')]")
     private WebElement nameOfCategory;
@@ -32,17 +30,13 @@ public class NewsPage extends BasePage {
         return nameOfHeadlineArticle.getText();
     }
 
-    public String getNameOfArticle2(){
-        return article2.getText();
-    }
-    public String getNameOfArticle3(){
-        return article3.getText();
-    }
-    public String getNameOfArticle4(){
-        return article4.getText();
-    }
-    public String getNameOfArticle5(){
-        return article5.getText();
+    public List<String> getNameOfSecondaryArticles(){
+//        List<String> list = new ArrayList<>();
+//        for (int i = 0; i < listOfSecondaryArticles.size() - 1; i++) {
+//            list.add(i, String.valueOf(listOfSecondaryArticles.get(i).getText()));
+//        }
+//        return list;
+        return listOfSecondaryArticles.stream().map(WebElement::getText).collect(Collectors.toList());
     }
 
     public String getNameOfCategory(){

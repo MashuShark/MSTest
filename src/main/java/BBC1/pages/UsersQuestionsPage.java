@@ -26,9 +26,6 @@ public class UsersQuestionsPage extends BasePage{
     private WebElement submitButton;
 
     @FindBy(xpath = "//div[@class='checkbox']//input[@type='checkbox']")
-    private WebElement checkBox;
-
-    @FindBy(xpath = "//div[@class='checkbox']//input[@type='checkbox']")
     private WebElement checkboxButton;
 
     public UsersQuestionsPage(WebDriver driver) {
