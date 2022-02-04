@@ -2,7 +2,6 @@ package BBC1.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 public class UsersCoronavirusStoryPage extends BasePage{
@@ -12,12 +11,6 @@ public class UsersCoronavirusStoryPage extends BasePage{
 
     public UsersCoronavirusStoryPage(WebDriver driver) {
         super(driver);
-    }
-
-    private void moveToElement(WebElement element){
-        Actions moveTo = new Actions(driver);
-        moveTo.moveToElement(element);
-//        moveTo.perform();
     }
 
     public void clickOnUsersQuestionsLink(){

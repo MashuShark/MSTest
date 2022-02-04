@@ -3,6 +3,7 @@ package BBC1.pages;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -30,5 +31,10 @@ public class BasePage {
     public void waitElementToBeClickable(long timeToWait, WebElement element) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeToWait));
         wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    public void moveToElement(WebElement element){
+        Actions moveTo = new Actions(driver);
+        moveTo.moveToElement(element);
     }
 }

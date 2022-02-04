@@ -1,9 +1,7 @@
 package BBC1.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 import static org.openqa.selenium.By.xpath;
@@ -30,11 +28,6 @@ public class UsersQuestionsPage extends BasePage{
 
     public UsersQuestionsPage(WebDriver driver) {
         super(driver);
-    }
-
-    private void moveToElement(WebElement element){
-        Actions moveTo = new Actions(driver);
-        moveTo.moveToElement(element);
     }
 
     public void moveToFormForUsersQuestions(){
