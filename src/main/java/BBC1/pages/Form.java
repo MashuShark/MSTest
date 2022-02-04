@@ -5,9 +5,9 @@ import java.util.Map;
 
 public class Form extends BasePage{
 
-    public void fillForm(Map<String, String> values) {
-        for ( Map.Entry entry: values.entrySet())
-            UsersQuestionsPage.getTextXpath(String.valueOf(entry.getKey()))
+    public void fillForm(Map<String, String> values,String locator) {
+        for ( Map.Entry entry: values.entrySet() )
+            getTextLocator(locator, String.valueOf(entry.getKey()))
                     .sendKeys(String.valueOf(entry.getValue()));
     }
 

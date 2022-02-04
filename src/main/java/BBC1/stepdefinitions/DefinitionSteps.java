@@ -13,6 +13,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.List;
 import java.util.Map;
+
+import static BBC1.pages.UsersQuestionsPage.FORM_LOCATOR;
 import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
 
 public class DefinitionSteps {
@@ -35,6 +37,11 @@ public class DefinitionSteps {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         pageFactoryManager = new PageFactoryManager(driver);
+    }
+
+    @DataTableType(replaceWithEmptyString = "[blank]")
+    public String listOfStringListsType(String cell) {
+        return cell;
     }
 
     @And("User opens {string} page")
@@ -98,15 +105,9 @@ public class DefinitionSteps {
     }
 
     @And("User fills form")
-//    @DataTableType(replaceWithEmptyString = "[blank]")
     public void fillForm(Map<String, String> entry) {
         form = pageFactoryManager.getForm();
-        form.fillForm(entry);
-    }
-
-    @DataTableType(replaceWithEmptyString = "[blank]")
-    public String listOfStringListsType(String cell) {
-        return cell;
+        form.fillForm(entry, FORM_LOCATOR);
     }
 
     @And("User selects dropdown")

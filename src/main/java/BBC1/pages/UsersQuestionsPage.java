@@ -26,6 +26,8 @@ public class UsersQuestionsPage extends BasePage{
     @FindBy(xpath = "//div[@class='checkbox']//input[@type='checkbox']")
     private WebElement checkboxButton;
 
+    public static final String FORM_LOCATOR = "//div[@class='embed-content-container']//*[contains(@placeholder,'%s')]";
+
     public UsersQuestionsPage(WebDriver driver) {
         super(driver);
     }
@@ -58,9 +60,4 @@ public class UsersQuestionsPage extends BasePage{
         checkboxButton.click();
     }
 
-    public static WebElement getTextXpath(String text) {
-        return driver.findElement(xpath(String.format(
-                "//div[@class='embed-content-container']//*[contains(@placeholder,'%s')]", text
-        )));
-    }
 }

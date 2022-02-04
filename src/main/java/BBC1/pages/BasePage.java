@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
+import static org.openqa.selenium.By.xpath;
+
 
 public class BasePage {
     static WebDriver driver;
@@ -36,5 +38,11 @@ public class BasePage {
     public void moveToElement(WebElement element){
         Actions moveTo = new Actions(driver);
         moveTo.moveToElement(element);
+    }
+
+    public static WebElement getTextLocator(String locator, String text) {
+        return driver.findElement(xpath(String.format(
+                locator, text
+        )));
     }
 }
