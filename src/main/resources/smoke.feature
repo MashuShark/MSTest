@@ -54,6 +54,6 @@ Feature: Smoke
     Examples:
       |question                 |name   | email address | contact number | location | age| error                         |
       |Some text for verify form|Tom    | [blank]       | 1234567890     | Monaco   | 20 | Email address can\'t be blank |
-      |Some text for verify form|[blank]| test@mail.com | 1234567890     | Monaco  | 20  | Name can\'t be blank          |
-      |[blank]                  |Alex   | test@mail.com | 1234567890     | Monaco  | 20  | can\'t be blank               |
+#      |Some text for verify form|[blank]| test@mail.com | 1234567890     | Monaco  | 20  | Name can\'t be blank          |
+#      |[blank]                  |Alex   | test@mail.com | 1234567890     | Monaco  | 20  | can\'t be blank               |
 
