@@ -58,12 +58,14 @@ public class DefinitionSteps {
 
     @And("Checks the name of the headline article against a {string}")
     public void checkNameOfTHeadlineArticle(final String title) {
-        Assert.assertEquals(title, newsPage.getNameOfHeadlineArticle());
+        Assert.assertEquals("The title of the headline article title does not match what is expected",
+                title, newsPage.getNameOfHeadlineArticle());
     }
 
     @And("Checks that name of secondary articles are correct")
     public void checksNameOfSecondaryArticles(List<String> names) {
-       Assert.assertTrue("Names of second articles on site don't match", names.equals(newsPage.getNameOfSecondaryArticles()));
+        Assert.assertEquals("The title of the second articles title do not match what is expected",
+                names, newsPage.getNameOfSecondaryArticles());
     }
 
     @And("User enters title of Category in search field")
@@ -75,7 +77,8 @@ public class DefinitionSteps {
     @And("Checks the name of the first in category article against a title of Category")
     public void checkNameOfFirstInCategoryArticleAgainstNameOfCategory() {
         searchResultPage = pageFactoryManager.getSearchResultPage();
-        Assert.assertTrue(searchResultPage.getNameOfFirstArticle().contains(titleOfCategory));
+        Assert.assertTrue("The name of the first article in the search result does not contain the name of Category",
+                searchResultPage.getNameOfFirstArticle().contains(titleOfCategory));
     }
 
     @And("User opens Coronavirus category")
@@ -123,7 +126,8 @@ public class DefinitionSteps {
     @When("User checks {string} message")
     public void checksEmailErrorMessageError_message_missing_email(final String error) {
        usersQuestionsPage.waitVisibilityOfElement(60, usersQuestionsPage.getErrorMessageMissingEmail());
-        Assert.assertTrue(usersQuestionsPage.getErrorMessageMissingEmailText().contains(error));
+        Assert.assertTrue("The expected error message does not visible",
+                usersQuestionsPage.getErrorMessageMissingEmailText().contains(error));
     }
 
     @After
