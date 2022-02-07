@@ -1,5 +1,6 @@
 package BBC1.pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,11 +25,11 @@ public class HomePage extends BasePage{
     }
 
     public void clickOnNewsButton(){
-        newsButtonHeader.click();
+        clickOnElement(newsButtonHeader);
     }
 
     public void enterTextInSearchBar(String textForSearching){
-        searchBar.sendKeys(textForSearching);
+        searchBar.sendKeys(Keys.HOME, Keys.chord(Keys.SHIFT, Keys.END), textForSearching);
         searchButton.click();
     }
 }

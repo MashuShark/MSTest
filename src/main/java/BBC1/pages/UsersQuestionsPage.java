@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 
 public class UsersQuestionsPage extends BasePage{
 
+    public static final String FORM_LOCATOR = "//div[@class='embed-content-container']//*[contains(@placeholder,'%s')]";
+
     @FindBy(xpath = "//div[contains(@id,'hearken-embed-module')]")
     private WebElement formForUsersQuestions;
 
@@ -25,8 +27,6 @@ public class UsersQuestionsPage extends BasePage{
     @FindBy(xpath = "//div[@class='checkbox']//input[@type='checkbox']")
     private WebElement checkboxButton;
 
-    public static final String FORM_LOCATOR = "//div[@class='embed-content-container']//*[contains(@placeholder,'%s')]";
-
     public UsersQuestionsPage(WebDriver driver) {
         super(driver);
     }
@@ -43,12 +43,9 @@ public class UsersQuestionsPage extends BasePage{
         return errorMessage.getText();
     }
 
-    public void clickClosePopupButton(){
+    public void closePopupButton(){
+        waitElementToBeClickable(60, closePopupButton);
         closePopupButton.click();
-    }
-
-    public WebElement getClosePopupButton(){
-        return  closePopupButton;
     }
 
     public void clickOnSubmitButton(){

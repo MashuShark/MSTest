@@ -83,7 +83,7 @@ public class DefinitionSteps {
 
     @And("User opens Coronavirus category")
     public void openCoronavirusCategory() {
-        newsPage.clickOnCoronavirusCategory();
+        newsPage.clickOnCoronavirusCategoryButton();
         coronavirusCategoryPage = pageFactoryManager.getCoronavirusCategoryPage();
     }
 
@@ -102,8 +102,7 @@ public class DefinitionSteps {
 
     @And("User moves to form for user questions")
     public void userMovesToFormForUserQuestions() {
-        usersQuestionsPage.waitElementToBeClickable(60, usersQuestionsPage.getClosePopupButton());
-        usersQuestionsPage.clickClosePopupButton();
+        usersQuestionsPage.closePopupButton();
         usersQuestionsPage.moveToFormForUsersQuestions();
     }
 

@@ -19,7 +19,7 @@ public class NewsPage extends BasePage {
     private WebElement nameOfCategory;
 
     @FindBy(xpath = "//ul[contains(@class,'nw-c-nav__wide-sections')]//a[contains(@href,'coronavirus')]")
-    private WebElement coronavirusCategory;
+    private WebElement coronavirusCategoryButton;
 
     public NewsPage(WebDriver driver) {
         super(driver);
@@ -37,7 +37,7 @@ public class NewsPage extends BasePage {
         return nameOfCategory.getText();
     }
 
-    public void clickOnCoronavirusCategory() {
-        coronavirusCategory.click();
+    public void clickOnCoronavirusCategoryButton() {
+        clickOnElement(coronavirusCategoryButton);
     }
 }

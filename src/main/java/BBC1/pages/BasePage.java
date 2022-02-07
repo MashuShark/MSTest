@@ -30,7 +30,7 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public void waitElementToBeClickable(long timeToWait, WebElement element) {
+    public static void waitElementToBeClickable(long timeToWait, WebElement element) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeToWait));
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
@@ -44,5 +44,10 @@ public class BasePage {
         return driver.findElement(xpath(String.format(
                 locator, text
         )));
+    }
+
+    public static void clickOnElement(WebElement element){
+        waitElementToBeClickable(30, element);
+        element.click();
     }
 }

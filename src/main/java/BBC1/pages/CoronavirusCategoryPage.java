@@ -13,8 +13,14 @@ public class CoronavirusCategoryPage extends BasePage{
         super(driver);
     }
 
+
     public void clickOnUsersCoronavirusStoryButton(){
-        usersCoronavirusStoryButton.click();
+        clickOnElement(usersCoronavirusStoryButton);
     }
+
+//    public void clickOnUsersCoronavirusStoryButton(){
+//        waitElementToBeClickable(30, usersCoronavirusStoryButton);
+//        usersCoronavirusStoryButton.click();
+//    }
 
 }
