@@ -12,7 +12,7 @@ public class NewsPage extends BasePage {
     @FindBy(xpath = "//div[contains(@class,'gs-u-display-inline-block@m')]//h3[contains(@class,'gs-c-promo-heading')]")
     private WebElement nameOfHeadlineArticle;
 
-    @FindBy(xpath = "//div[contains(@class,'top-stories--international')]//div[contains(@class,'secondary-item')]//h3")
+    @FindBy(xpath = "//div[contains(@class,'nw-c-top-stories__secondary-item')]//h3")
     private List<WebElement> listOfSecondaryArticles;
 
     @FindBy(xpath = "//a[contains(@class,'nw-o-link--no-visited-state')]")
@@ -25,19 +25,19 @@ public class NewsPage extends BasePage {
         super(driver);
     }
 
-    public String getNameOfHeadlineArticle(){
+    public String getNameOfHeadlineArticle() {
         return nameOfHeadlineArticle.getText();
     }
 
-    public List<String> getNameOfSecondaryArticles(){
+    public List<String> getNameOfSecondaryArticles() {
         return listOfSecondaryArticles.stream().map(WebElement::getText).collect(Collectors.toList());
     }
 
-    public String getNameOfCategory(){
+    public String getNameOfCategory() {
         return nameOfCategory.getText();
     }
 
-    public void clickOnCoronavirusCategory(){
+    public void clickOnCoronavirusCategory() {
         coronavirusCategory.click();
     }
 }
