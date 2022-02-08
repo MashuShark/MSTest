@@ -47,13 +47,13 @@ Feature: Smoke
       | Location       | <location>       |
       | Age            | <age>            |
 
-    And User selects dropdown
+    And User selects '<dropdown>'
     And User sends form
     When User checks '<error>' message
 
     Examples:
-      | question                  | name    | email address | contact number | location | age | error                         |
-      | Some text for verify form | Tom     | [blank]       | 1234567890     | Monaco   | 20  | Email address can\'t be blank |
-#      | Some text for verify form | [blank] | test@mail.com | 1234567890     | Monaco   | 20  | Name can\'t be blank          |
-#      | [blank]                   | Alex    | test@mail.com | 1234567890     | Monaco   | 20  | can\'t be blank               |
-
+      | question                  | name    | email address | contact number | location | age | dropdown | error                         |
+      | Some text for verify form | Tom     | [blank]       | 1234567890     | Monaco   | 20  | Yes      | Email address can\'t be blank |
+      | Some text for verify form | [blank] | test@mail.com | 1234567890     | Monaco   | 100 | yes      | Name can\'t be blank          |
+      | [blank]                   | Alex    | test@mail.com | 1234567890     | Monaco   | 20  | No       | can\'t be blank               |
+      | Some text for verify form | Mery    | test@mail.com | 1234567890     | UK       | 35  | No       | must be accepted              |

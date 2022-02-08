@@ -13,6 +13,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import static BBC1.pages.UsersQuestionsPage.FORM_LOCATOR;
 import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
@@ -112,9 +113,10 @@ public class DefinitionSteps {
         form.fillForm(entry, FORM_LOCATOR);
     }
 
-    @And("User selects dropdown")
-    public void userSelectDropdown() {
-        usersQuestionsPage.selectValueFromDropdown();
+    @And("User selects {string}")
+    public void selectDropdown(String yesNo) {
+        if (Objects.equals(yesNo.toLowerCase(), "yes"))
+            usersQuestionsPage.selectValueFromDropdown();
     }
 
     @And("User sends form")
