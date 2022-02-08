@@ -6,6 +6,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import static BBC1.pages.BasePage.waitElementToBeClickable;
 import static BBC1.pages.UsersQuestionsPage.FORM_LOCATOR;
 import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
 
@@ -157,11 +159,24 @@ public class DefinitionSteps {
         soresAndFixturesPage.searchFootballScoresAndFixtures(championship);
     }
 
+    @And("User selects results for a {string}")
+    public void selectResultsForAPeriod(String period) {
+        soresAndFixturesPage.selectPeriod(period);
+    }
+
+    @Then("User checks that {string} and {string} played with a specific {string}")
+    public void checkTeamFirstTeamSecondScore(String firstTeam, String secondTeam, String score) {
+        Assert.assertTrue("Name of first team don't matched",
+                soresAndFixturesPage.getNameOfFirstTeam().contains(firstTeam));
+        Assert.assertTrue("Name of second team don't matched",
+                soresAndFixturesPage.getNameOfSecondTeam().contains(secondTeam));
+        Assert.assertTrue("Expected score: " + score + "and actual score: "
+                        + soresAndFixturesPage.getScore() + "don't matched",
+                soresAndFixturesPage.getScore().equals(score));
+    }
 
     @After
     public void tearDown(){
         driver.close();
     }
-
-
 }

@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 import static org.openqa.selenium.By.xpath;
 
@@ -42,6 +43,7 @@ public class BasePage {
     }
 
     public static WebElement getTextLocator(String locator, String text) {
+        // must contain locator with '%s' element
         return driver.findElement(xpath(String.format(
                 locator, text
         )));
