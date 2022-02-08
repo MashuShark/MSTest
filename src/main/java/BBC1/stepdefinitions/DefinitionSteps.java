@@ -152,9 +152,16 @@ public class DefinitionSteps {
         soresAndFixturesPage = pageFactoryManager.getSoresAndFixturesPage();
     }
 
+    @When("User searches for a {string}")
+    public void searchForAChampionship(String championship) {
+        soresAndFixturesPage.searchFootballScoresAndFixtures(championship);
+    }
+
 
     @After
     public void tearDown(){
         driver.close();
     }
+
+
 }

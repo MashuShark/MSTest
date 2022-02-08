@@ -13,9 +13,6 @@ public class HomePage extends BasePage{
     @FindBy (xpath = "//input[@id='orb-search-q']")
     private WebElement searchBar;
 
-    @FindBy(xpath = "//button[@id='orb-search-button']")
-    private WebElement searchButton;
-
     @FindBy(xpath = "//div[contains(@class,'orb-nav-focus')]//a[text()='Sport']")
     private WebElement sportButtonHeader;
 
@@ -32,8 +29,7 @@ public class HomePage extends BasePage{
     }
 
     public void enterTextInSearchBar(String textForSearching){
-        searchBar.sendKeys(Keys.HOME, Keys.chord(Keys.SHIFT, Keys.END), textForSearching);
-        searchButton.click();
+        enterText(searchBar, textForSearching);
     }
 
     public void clickOnSportButton(){

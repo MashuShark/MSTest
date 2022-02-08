@@ -1,6 +1,7 @@
 package BBC1.pages;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -49,5 +50,9 @@ public class BasePage {
     public static void clickOnElement(WebElement element){
         waitElementToBeClickable(30, element);
         element.click();
+    }
+
+        public void enterText(WebElement elementNeededText, String textForSearching){
+        elementNeededText.sendKeys(Keys.HOME, Keys.chord(Keys.SHIFT, Keys.END), textForSearching, Keys.ENTER);
     }
 }

@@ -13,5 +13,8 @@ public class SoresAndFixturesPage extends BasePage{
         super(driver);
     }
 
+    public void searchFootballScoresAndFixtures(String textForSearching){
+        enterText(searchBar, textForSearching);
+    }
 
 }
