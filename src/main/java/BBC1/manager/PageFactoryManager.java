@@ -26,4 +26,16 @@ public class PageFactoryManager {
     public UsersCoronavirusStoryPage getUsersCoronavirusStoryPage(){ return new UsersCoronavirusStoryPage(driver);}
 
     public UsersQuestionsPage getUsersUsersQuestionsPage(){ return new UsersQuestionsPage(driver);}
+
+    public SportPage getSportPage(){
+        return new SportPage(driver);
+    }
+
+    public FootballPage getFootballPage(){
+        return new FootballPage(driver);
+    }
+
+    public SoresAndFixturesPage getSoresAndFixturesPage(){
+        return new SoresAndFixturesPage(driver);
+    }
 }

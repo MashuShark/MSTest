@@ -29,6 +29,9 @@ public class DefinitionSteps {
     UsersQuestionsPage usersQuestionsPage;
     Form form;
     PageFactoryManager pageFactoryManager;
+    SportPage sportPage;
+    FootballPage footballPage;
+    SoresAndFixturesPage soresAndFixturesPage;
 
     private String titleOfCategory;
 
@@ -131,9 +134,27 @@ public class DefinitionSteps {
                 usersQuestionsPage.getErrorMessageMissingEmailText().contains(error));
     }
 
+    @And("User goes to Sport Page")
+    public void goToSportPage() {
+        homePage.clickOnSportButton();
+        sportPage = pageFactoryManager.getSportPage();
+    }
+
+    @And("User goes to Football Page")
+    public void goToFootballPage() {
+        sportPage.clickOnFootballCategoryButton();
+        footballPage = pageFactoryManager.getFootballPage();
+    }
+
+    @And("User goes to Scores and Fixtures")
+    public void userGoesToScoresAndFixtures() {
+        footballPage.clickOnSoresAndFixturesButton();
+        soresAndFixturesPage = pageFactoryManager.getSoresAndFixturesPage();
+    }
+
+
     @After
     public void tearDown(){
         driver.close();
     }
-
 }
