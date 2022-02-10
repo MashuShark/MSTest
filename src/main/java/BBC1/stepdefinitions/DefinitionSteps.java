@@ -46,7 +46,7 @@ public class DefinitionSteps {
     }
 
     @DataTableType(replaceWithEmptyString = "[blank]")
-    public String listOfStringListsType(String cell) {
+    public String stringType(String cell) {
         return cell;
     }
 

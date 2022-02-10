@@ -31,7 +31,7 @@ public class SoresAndFixturesPage extends BasePage{
     }
 
     public void searchFootballScoresAndFixtures(String textForSearching){
-        enterText(searchBar, textForSearching);
+        enterText(searchBar, textForSearching, searchBarHint);
         searchBarHint.click();
     }
 

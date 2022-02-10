@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/main/resources/smoke.feature",
+        features = "src/main/resources",
         glue = "BBC1/stepdefinitions"
 )
 
