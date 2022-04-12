@@ -22,8 +22,11 @@ Feature: Smoke
     When User searches for a '<championship>'
     And User selects results for a '<period>'
     Then User checks that '<teamFirst>' and '<teamSecond>' played with a specific '<score>'
+
     Examples:
-      | championship          | period  | teamFirst   | teamSecond | score |
-      | Scottish Championship | 2021-12 | Dunfermline | Arbroath   | 0 3   |
+      | championship          | period  | teamFirst  | teamSecond      | score |
+      | Scottish Championship | 2021-12 | Kilmarnock | Greenock Morton | 1 1   |
+
+
 
 

@@ -38,4 +38,7 @@ public class PageFactoryManager {
     public SoresAndFixturesPage getSoresAndFixturesPage(){
         return new SoresAndFixturesPage(driver);
     }
+
+    public MatchPage getMatchPage(){return new MatchPage(driver);}
+
 }

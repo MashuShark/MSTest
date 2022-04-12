@@ -4,16 +4,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class SportPage extends BasePage{
+public class SportPage extends BasePage {
 
-    @FindBy(xpath = "//div[@aria-label='Primary']//a[@data-stat-title='Football']")
+    @FindBy(xpath = "//div[contains(@class,'MenuListContainer')]//span[text()='Football']")
     private WebElement footballCategoryButton;
 
     public SportPage(WebDriver driver) {
         super(driver);
     }
 
-    public void clickOnFootballCategoryButton(){
+    public void clickOnFootballCategoryButton() {
         clickOnElement(footballCategoryButton);
     }
 }

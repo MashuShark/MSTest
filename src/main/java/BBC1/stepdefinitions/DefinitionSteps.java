@@ -1,5 +1,6 @@
 package BBC1.stepdefinitions;
 
+import BBC1.DTO.Match;
 import BBC1.manager.PageFactoryManager;
 import BBC1.pages.*;
 import io.cucumber.java.After;
@@ -16,13 +17,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import static BBC1.pages.BasePage.waitElementToBeClickable;
 import static BBC1.pages.UsersQuestionsPage.FORM_LOCATOR;
 import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
+import static org.junit.Assert.assertEquals;
 
 public class DefinitionSteps {
 
-    static WebDriver driver;
+    WebDriver driver;
+
     HomePage homePage;
     NewsPage newsPage;
     SearchResultPage searchResultPage;
@@ -34,11 +36,12 @@ public class DefinitionSteps {
     SportPage sportPage;
     FootballPage footballPage;
     SoresAndFixturesPage soresAndFixturesPage;
+    MatchPage matchPage;
 
     private String titleOfCategory;
 
     @Before
-    public void testSetUp(){
+    public void testSetUp() {
         chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -51,7 +54,7 @@ public class DefinitionSteps {
     }
 
     @And("User opens {string} page")
-    public void openPage(final String url){
+    public void openPage(final String url) {
         homePage = pageFactoryManager.getHomePage();
         homePage.openHomePage(url);
     }
@@ -64,13 +67,13 @@ public class DefinitionSteps {
 
     @And("Checks the name of the headline article against a {string}")
     public void checkNameOfTHeadlineArticle(final String title) {
-        Assert.assertEquals("The title of the headline article title does not match what is expected",
+        assertEquals("The title of the headline article title does not match what is expected",
                 title, newsPage.getNameOfHeadlineArticle());
     }
 
     @And("Checks that name of secondary articles are correct")
     public void checksNameOfSecondaryArticles(List<String> names) {
-        Assert.assertEquals("The title of the second articles title do not match what is expected",
+        assertEquals("The title of the second articles title do not match what is expected",
                 names, newsPage.getNameOfSecondaryArticles());
     }
 
@@ -104,6 +107,7 @@ public class DefinitionSteps {
         usersCoronavirusStoryPage.clickOnUsersQuestionsLink();
         usersQuestionsPage = pageFactoryManager.getUsersUsersQuestionsPage();
         usersQuestionsPage.waitLoadPage(60);
+        //System.getProperty(loadPageTimout)
     }
 
     @And("User moves to form for user questions")
@@ -131,7 +135,7 @@ public class DefinitionSteps {
 
     @When("User checks {string} message")
     public void checksEmailErrorMessageError_message_missing_email(final String error) {
-       usersQuestionsPage.waitVisibilityOfElement(60, usersQuestionsPage.getErrorMessageMissingEmail());
+        usersQuestionsPage.waitVisibilityOfElement(60, usersQuestionsPage.getErrorMessageMissingEmail());
         Assert.assertTrue("The expected error message does not visible",
                 usersQuestionsPage.getErrorMessageMissingEmailText().contains(error));
     }
@@ -166,17 +170,32 @@ public class DefinitionSteps {
 
     @Then("User checks that {string} and {string} played with a specific {string}")
     public void checkTeamFirstTeamSecondScore(String firstTeam, String secondTeam, String score) {
-        Assert.assertTrue("Name of first team don't matched",
-                soresAndFixturesPage.getNameOfFirstTeam().contains(firstTeam));
-        Assert.assertTrue("Name of second team don't matched",
-                soresAndFixturesPage.getNameOfSecondTeam().contains(secondTeam));
-        Assert.assertTrue("Expected score: " + score + "and actual score: "
-                        + soresAndFixturesPage.getScore() + "don't matched",
-                soresAndFixturesPage.getScore().equals(score));
+        Match matchExpected = new Match(firstTeam, secondTeam, score);
+
+        Match matchSearchResult = new Match(soresAndFixturesPage.getFirstTeam(),
+                soresAndFixturesPage.getSecondTeam(),
+                soresAndFixturesPage.getScore());
+
+        soresAndFixturesPage.openMatchResultPage();
+        matchPage = new MatchPage(driver);
+
+        Match match = new Match(matchPage.getFirstTeam(), matchPage.getSecondTeam(), matchPage.getScore());
+
+        // verification that the search result scope matched the expected score
+        Assert.assertTrue(
+                matchSearchResult.getFirstTeam().contains(matchExpected.getFirstTeam()) &&
+                        matchSearchResult.getSecondTeam().contains(matchExpected.getSecondTeam()) &&
+                        matchSearchResult.getScore().contains(matchExpected.getScore()));
+
+        // verification that the search result scope matched the score on match page
+        Assert.assertTrue(
+                match.getFirstTeam().contains(matchSearchResult.getFirstTeam()) &&
+                        match.getSecondTeam().contains(matchSearchResult.getSecondTeam()) &&
+                        match.getScore().contains(matchSearchResult.getScore()));
     }
 
     @After
-    public void tearDown(){
+    public void tearDown() {
         driver.close();
     }
 }

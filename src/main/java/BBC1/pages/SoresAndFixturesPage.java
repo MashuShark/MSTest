@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class SoresAndFixturesPage extends BasePage{
+public class SoresAndFixturesPage extends BasePage {
 
     @FindBy(xpath = "//input[@name='search']")
     private WebElement searchBar;
@@ -14,46 +14,48 @@ public class SoresAndFixturesPage extends BasePage{
 
     public static final String XPATH_FOR_PERIOD = "//a[contains(@href,'fixtures/%s')]";
 
-    @FindBy(xpath = "//article[@class='sp-c-fixture']//span[contains(text(),'Dunfermline')]")
+    @FindBy(xpath = "//span[contains(@class,'qa-full-team-name')]")
     private WebElement nameOfFirstTeam;
 
-    @FindBy(xpath = "//article[@class='sp-c-fixture']//span[contains(text(),'Arbroath')]")
+    @FindBy(xpath = "(//span[contains(@class,'qa-full-team-name')])[2]")
     private WebElement nameOfSecondTeam;
 
-    @FindBy(xpath = "//article[@data-event-id=\"EFBO2209359\"]//span[contains(text(),'0')]")
+    @FindBy(xpath = "//span[contains(@class,'number--home')]")
     private WebElement scoreOfFirstTeam;
 
-    @FindBy(xpath = "//article[@data-event-id=\"EFBO2209359\"]//span[contains(text(),'3')]")
+    @FindBy(xpath = "//span[contains(@class,'number--away')]")
     private WebElement scoreOfSecondTeam;
 
     public SoresAndFixturesPage(WebDriver driver) {
         super(driver);
     }
 
-    public void searchFootballScoresAndFixtures(String textForSearching){
+    public void searchFootballScoresAndFixtures(String textForSearching) {
         enterText(searchBar, textForSearching, searchBarHint);
-        searchBarHint.click();
     }
 
-    public void selectPeriod(String period){
+    public void selectPeriod(String period) {
         WebElement selectedPeriod = getTextLocator(XPATH_FOR_PERIOD, period);
         moveToElement(selectedPeriod);
         clickOnElement(selectedPeriod);
     }
 
-    public String getNameOfFirstTeam(){
+    public void openMatchResultPage() {
         waitVisibilityOfElement(60, nameOfFirstTeam);
         moveToElement(nameOfFirstTeam);
+        nameOfFirstTeam.click();
+    }
+
+    public String getFirstTeam() {
+        waitVisibilityOfElement(60, nameOfFirstTeam);
         return nameOfFirstTeam.getText();
     }
 
-    public String getNameOfSecondTeam(){
-        waitVisibilityOfElement(60, nameOfSecondTeam);
-        moveToElement(nameOfSecondTeam);
+    public String getSecondTeam() {
         return nameOfSecondTeam.getText();
     }
 
-    public String getScore(){
+    public String getScore() {
         return scoreOfFirstTeam.getText().concat(" ").concat(scoreOfSecondTeam.getText());
     }
 
