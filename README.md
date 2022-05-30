@@ -1,4 +1,4 @@
-# Autotest for [BBC] (https://www.bbc.com)
+# Autotest for [BBC](https://www.bbc.com)
 
 Test 1:
 
