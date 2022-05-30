@@ -21,4 +21,4 @@ Test 5:
 Check that team scores display correctly.
 
 ### Tools:	testNG, XPath, Selenium WebDriver, SeleniumGrid, Cucumber;
-### Technologies:	Java, PageFactory, BDD, DTO;
+### Technologies:	Java, maven, PageFactory, BDD, DTO;
